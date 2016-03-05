@@ -1,10 +1,12 @@
+package main.java;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class SuperMarketPlusPlus {
 
-	private static List<Item> items = null;
+	// private static List<Item> items = null;
 
 	/**
 	 * @param args
@@ -13,20 +15,22 @@ public class SuperMarketPlusPlus {
 		
         System.out.println("Starting Supermarket Plus Plus");
 		
-        items = new ArrayList<Item>();
+        List<Item> items = new ArrayList<Item>();
+        items.add(new Item("Organic Banana", 6, 9));
         items.add(new Item("Thermal Vest", 10, 20));
         items.add(new Item("Aged Brie", 2, 0));
         items.add(new Item("Chicken", 5, 7));
         items.add(new Item("Sulfuras", 0, 80));
         items.add(new Item("Backstage Passes", 15, 20));
         items.add(new Item("Ginger Cake", 3, 6));
+        
 
-        updateQuality();
+        updateQuality(items);
 }
 
 
 	
-    public static void updateQuality()
+    public static void updateQuality(List<Item> items)
     {
         for (int i = 0; i < items.size(); i++)
         {
@@ -52,7 +56,7 @@ public class SuperMarketPlusPlus {
                         {
                             if (items.get(i).getQuality() < 50)
                             {
-                                items.get(i).setQuality(items.get(i).getQuality() + 1);
+                                items.get(i).setQuality(items.get(i).getQuality() + 2);
                             }
                         }
 
@@ -60,7 +64,7 @@ public class SuperMarketPlusPlus {
                         {
                             if (items.get(i).getQuality() < 50)
                             {
-                                items.get(i).setQuality(items.get(i).getQuality() + 1);
+                                items.get(i).setQuality(items.get(i).getQuality() + 3);
                             }
                         }
                     }
@@ -69,7 +73,12 @@ public class SuperMarketPlusPlus {
 
             if (!"Sulfuras".equals(items.get(i).getName()))
             {
-                items.get(i).setSellIn(items.get(i).getSellIn() - 1);
+            	if("Organic Banana".equals(items.get(i).getName())){
+            		items.get(i).setSellIn(items.get(i).getSellIn() - 2);            		
+            	}
+            	else{
+            		items.get(i).setSellIn(items.get(i).getSellIn() - 1);
+            	}
             }
 
             if (items.get(i).getSellIn() < 0)
@@ -82,7 +91,7 @@ public class SuperMarketPlusPlus {
                         {
                             if (!"Sulfuras".equals(items.get(i).getName()))
                             {
-                                items.get(i).setQuality(items.get(i).getQuality() - 1);
+                                items.get(i).setQuality(items.get(i).getQuality() - 2);
                             }
                         }
                     }
